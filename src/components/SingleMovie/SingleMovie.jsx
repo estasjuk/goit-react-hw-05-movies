@@ -25,8 +25,6 @@ const SingleMovie = () => {
     fetchMovieDetails();
   }, [movieId]);
 
-  console.log(movie);
-
   return (
     <div>
       <button onClick={() => navigate(-1)}>Go back</button>
@@ -39,6 +37,7 @@ const SingleMovie = () => {
       <Link to="cast">Cast</Link>
       <Link to="reviews">Reviews</Link>
       <Outlet />
+      {error && <p>Something goes wrong...</p>}
     </div>
   );
 };

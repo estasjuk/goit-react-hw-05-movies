@@ -30,3 +30,8 @@ export const searchCastByMovieId = async movie_id => {
   const { data } = await instance.get(`/movie/${movie_id}/credits`);
   return data;
 };
+
+export const searchReviewsByMovieId = async movie_id => {
+  const { data } = await instance.get(`/movie/${movie_id}/reviews`);
+  return data;
+};

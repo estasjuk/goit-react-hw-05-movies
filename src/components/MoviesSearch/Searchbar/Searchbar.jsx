@@ -5,7 +5,6 @@ import { memo } from 'react';
 import css from './Searchbar.module.css';
 
 const Searchbar = ({ onSubmit }) => {
-  console.log(onSubmit);
   const { search, handleChange, handleSubmit } = useForm(onSubmit);
 
   return (
