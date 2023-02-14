@@ -1,4 +1,4 @@
-import SingleMovie from 'components/MoviesSearch/SingleMovie/SingleMovie';
+import SingleMovie from '../../components/SingleMovie/SingleMovie';
 
 const SingleMoviePage = () => {
   return <SingleMovie />;

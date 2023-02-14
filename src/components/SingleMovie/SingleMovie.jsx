@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate, Link, Outlet } from 'react-router-dom';
 import { getMovieDetails } from 'shared/services/movies-api';
 
 const SingleMovie = () => {
@@ -8,6 +8,7 @@ const SingleMovie = () => {
   const [error, setError] = useState(null);
 
   const { movieId } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
@@ -28,11 +29,16 @@ const SingleMovie = () => {
 
   return (
     <div>
+      <button onClick={() => navigate(-1)}>Go back</button>
       <h1>
         {movie?.title}
         {movie?.release_date}
       </h1>
       <p>{movie?.overview}</p>
+      <p>Additional information</p>
+      <Link to="cast">Cast</Link>
+      <Link to="reviews">Reviews</Link>
+      <Outlet />
     </div>
   );
 };

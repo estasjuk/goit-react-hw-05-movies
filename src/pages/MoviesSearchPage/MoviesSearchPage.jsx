@@ -1,9 +1,9 @@
-import Searchbar from '../../components/MoviesSearch/Searchbar/Searchbar';
+import MoviesSearch from '../../components/MoviesSearch/MoviesSearch';
 
 const MoviesSearchPage = () => {
   return (
     <>
-      <Searchbar />
+      <MoviesSearch />
     </>
   );
 };

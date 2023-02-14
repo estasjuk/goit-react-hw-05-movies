@@ -25,3 +25,8 @@ export const searchMoviesByTitle = async query => {
   });
   return data;
 };
+
+export const searchCastByMovieId = async movie_id => {
+  const { data } = await instance.get(`/movie/${movie_id}/credits`);
+  return data;
+};

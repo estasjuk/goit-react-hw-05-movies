@@ -1,23 +1,25 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 import css from './MoviesSearch.module.css';
 import Searchbar from './Searchbar/Searchbar';
-import ImageGallery from './MovieGallery/ImageGallery';
+import MovieList from 'components/MovieList/MovieList';
 import { searchMoviesByTitle } from 'shared/services/movies-api';
-import Loader from 'shared/components/Loader/Loader';
+import Loader from '../../shared/Loader/Loader';
 
 const MovieSearch = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [search, setSearch] = useState('');
-  const [page, setPage] = useState(1);
   const [isLoadMore, setIsLoadMore] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
+  const [searchParams, setSearchParams] = useSearchParams();
+  const search = searchParams.get('search');
+  const page = searchParams.get('page');
+
   const onSearchMovies = search => {
-    setSearch(search);
-    setPage(1);
+    setSearchParams({ search, page: 1 });
     setMovies([]);
   };
 
@@ -52,14 +54,14 @@ const MovieSearch = () => {
     }
   }, [search, page, setIsLoadMore]);
 
-  const loadMore = () => {
-    setPage(prevPage => prevPage + 1);
-  };
+  const loadMore = useCallback(() => {
+    setSearchParams({ search, page: Number(page) + 1 });
+  }, [page, search, setSearchParams]);
 
   return (
     <div className={css.App}>
       <Searchbar onSubmit={onSearchMovies} />
-      {movies.length !== 0 && <ImageGallery pictures={movies} />}
+      {movies.length !== 0 && <MovieList movies={movies} />}
       {loading && <Loader />}
       {error && <p>Something goes wrong...</p>}
       {/* {isLoadMore && <Button onClick={loadMore} />} */}
