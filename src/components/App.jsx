@@ -1,17 +1,24 @@
+import { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Loader from 'shared/Loader/Loader';
 
-import Navbar from './Navbar/Navbar';
-import HomePage from 'pages/HomePage/HomePage';
-import SingleMoviePage from 'pages/SingleMoviePage/SingleMoviePage';
-import CastPage from 'pages/CastPage/CastPage';
-import ReviewsPage from 'pages/ReviewsPage/ReviewsPage';
-import MoviesSearchPage from 'pages/MoviesSearchPage/MoviesSearchPage';
-import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
+const Navbar = lazy(() => import('./Navbar/Navbar'));
+const HomePage = lazy(() => import('pages/HomePage/HomePage'));
+const SingleMoviePage = lazy(() =>
+  import('pages/SingleMoviePage/SingleMoviePage')
+);
+const CastPage = lazy(() => import('pages/CastPage/CastPage'));
+const ReviewsPage = lazy(() => import('pages/ReviewsPage/ReviewsPage'));
+const MoviesSearchPage = lazy(() =>
+  import('pages/MoviesSearchPage/MoviesSearchPage')
+);
+const NotFoundPage = lazy(() => import('pages/NotFoundPage/NotFoundPage'));
 
 export const App = () => {
   return (
     <BrowserRouter>
       <Navbar />
+      <Suspense fallback={<Loader />}></Suspense>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/movies/:movieId" element={<SingleMoviePage />}>
