@@ -6,6 +6,8 @@ import {
   Outlet,
   useLocation,
 } from 'react-router-dom';
+
+import Loader from 'shared/components/Loader/Loader';
 import { getMovieDetails } from 'shared/services/movies-api';
 import { getGenresList } from 'shared/services/getGenresList';
 
@@ -36,11 +38,12 @@ const SingleMovie = () => {
     };
     fetchMovieDetails();
   }, [movieId]);
-  console.log(movie);
-  console.log(movie.genres);
+  // console.log(movie);
+  // console.log(movie.genres);
 
   return (
     <div className={css.Wrapper}>
+      {loading && <Loader />}
       <button className={css.GoBackBtn} onClick={() => navigate(from)}>
         Go back
       </button>

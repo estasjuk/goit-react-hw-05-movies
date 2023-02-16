@@ -1,6 +1,6 @@
 import { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Loader from 'shared/Loader/Loader';
+import Loader from 'shared/components/Loader/Loader';
 
 const Navbar = lazy(() => import('./Navbar/Navbar'));
 const HomePage = lazy(() => import('pages/HomePage/HomePage'));

@@ -17,10 +17,11 @@ export const getMovieDetails = async movie_id => {
   return data;
 };
 
-export const searchMoviesByTitle = async query => {
+export const searchMoviesByTitle = async (query, page = 1) => {
   const { data } = await instance.get('/search/movie', {
     params: {
       query,
+      page,
     },
   });
   return data;

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import MovieList from 'components/MovieList/MovieList';
+import Loader from 'shared/components/Loader/Loader';
 
 import { getTrendingMovies } from '../../shared/services/movies-api';
 
@@ -28,6 +29,7 @@ const TrendingMovies = () => {
     <div>
       <MovieList movies={movies} />
       {error && <p>Something goes wrong...</p>}
+      {loading && <Loader />}
     </div>
   );
 };
