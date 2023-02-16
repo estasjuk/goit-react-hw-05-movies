@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { searchReviewsByMovieId } from 'shared/services/movies-api';
 import ReviewsList from './ReviewsList/ReviewsList';
+import Loader from 'shared/components/Loader/Loader';
 
-import css from './Reviews.module.css';
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
@@ -31,6 +31,7 @@ const Reviews = () => {
     <div>
       <ReviewsList reviews={reviews} />
       {error && <p>Something goes wrong...</p>}
+      {loading && <Loader />}
     </div>
   );
 };

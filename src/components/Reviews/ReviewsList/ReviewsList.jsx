@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types';
 import { memo } from 'react';
 
-import css from './ReviewsList.module.css';
-
 const ReviewsList = ({ reviews }) => {
   const elements = reviews.map(({ id, author, content }) => (
     <li key={id}>

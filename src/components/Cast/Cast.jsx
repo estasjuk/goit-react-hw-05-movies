@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { searchCastByMovieId } from 'shared/services/movies-api';
 import CastList from './CastList/CastList';
-
-import css from './Cast.module.css';
+import Loader from 'shared/components/Loader/Loader';
 
 const Cast = () => {
   const [cast, setCast] = useState([]);
@@ -31,6 +30,7 @@ const Cast = () => {
     <div>
       <CastList cast={cast} />
       {error && <p>Something goes wrong...</p>}
+      {loading && <Loader />}
     </div>
   );
 };
