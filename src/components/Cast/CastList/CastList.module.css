@@ -13,3 +13,8 @@
 .CastListImage {
   height: 240px;
 }
+
+.name {
+  font-weight: bold;
+  color: rgb(22, 97, 116);
+}

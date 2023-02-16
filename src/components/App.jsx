@@ -18,16 +18,18 @@ export const App = () => {
   return (
     <BrowserRouter>
       <Navbar />
-      <Suspense fallback={<Loader />}></Suspense>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/movies/:movieId" element={<SingleMoviePage />}>
-          <Route path="cast" element={<CastPage />} />
-          <Route path="reviews" element={<ReviewsPage />} />
-        </Route>
-        <Route path="/movies" element={<MoviesSearchPage />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
+
+      <Suspense fallback={<Loader />}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/movies/:movieId" element={<SingleMoviePage />}>
+            <Route path="cast" element={<CastPage />} />
+            <Route path="reviews" element={<ReviewsPage />} />
+          </Route>
+          <Route path="/movies" element={<MoviesSearchPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   );
 };

@@ -16,7 +16,7 @@ const CastList = ({ cast }) => {
         alt={name}
         loading="lazy"
       />
-      <p>{name}</p>
+      <p className={css.name}>{name}</p>
     </li>
   ));
 

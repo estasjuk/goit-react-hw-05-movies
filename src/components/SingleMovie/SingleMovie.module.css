@@ -1,0 +1,45 @@
+.Wrapper {
+  padding: 16px;
+}
+
+.MovieCard {
+  display: flex;
+  gap: 16px;
+}
+
+.title {
+  color: rgb(22, 97, 116);
+}
+
+.AddInfo {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.AddInfoLink {
+  text-decoration: none;
+  font-weight: 900;
+  color: rgb(22, 97, 116);
+}
+
+.AddInfoLink:hover,
+.AddInfoLink:focus {
+  color: rgb(8, 71, 88);
+}
+
+.GoBackBtn {
+  padding: 8px;
+  width: 88px;
+  margin-bottom: 16px;
+  background-color: rgb(22, 97, 116);
+  color: #fff;
+  font-weight: 900;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.GoBackBtn:hover,
+.GoBackBtn:focus {
+  background-color: rgb(8, 71, 88);
+}
