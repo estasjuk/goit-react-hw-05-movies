@@ -14,7 +14,7 @@ import { getGenresList } from 'shared/services/getGenresList';
 import css from './SingleMovie.module.css';
 
 const SingleMovie = () => {
-  const [movie, setMovie] = useState(null);
+  const [movie, setMovie] = useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -25,21 +25,25 @@ const SingleMovie = () => {
   const from = location.state?.from || '/';
 
   useEffect(() => {
+    setLoading(true);
     const fetchMovieDetails = async () => {
       try {
-        setLoading(true);
         const data = await getMovieDetails(movieId);
-        setMovie(data);
+        //console.log(data);
+        setMovie({ ...data });
       } catch ({ response }) {
         setError(response.data.message);
+        alert(response.data.message);
       } finally {
         setLoading(false);
       }
     };
     fetchMovieDetails();
+    //console.log(fetchMovieDetails());
+    //console.log(getMovieDetails(movieId));
   }, [movieId]);
-  // console.log(movie);
-  // console.log(movie.genres);
+
+  const { poster_path, genres, title, release_date, overview } = movie;
 
   return (
     <div className={css.Wrapper}>
@@ -50,8 +54,8 @@ const SingleMovie = () => {
       <div className={css.MovieCard}>
         <img
           src={
-            movie.poster_path
-              ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+            poster_path
+              ? `https://image.tmdb.org/t/p/w500${poster_path}`
               : 'https://ik.imagekit.io/tc8jxffbcvf/default-movie-portrait_EmJUj9Tda5wa.jpg?tr=fo-auto,di-'
           }
           alt={movie.title}
@@ -60,12 +64,12 @@ const SingleMovie = () => {
         />
         <div>
           <h1 className={css.title}>
-            {movie?.title} ({movie?.release_date})
+            {title} ({release_date})
           </h1>
           <h3 className={css.title}>Overview:</h3>
-          <p>{movie?.overview}</p>
+          <p>{overview}</p>
           <h3 className={css.title}>Genres:</h3>
-          <p>{getGenresList(movie.genres)}</p>
+          {genres.length !== 0 && <p>{getGenresList(genres)}</p>}
         </div>
       </div>
       <h3 className={css.title}>Additional information:</h3>

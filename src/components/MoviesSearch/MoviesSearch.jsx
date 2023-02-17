@@ -25,11 +25,9 @@ const MovieSearch = () => {
 
   useEffect(() => {
     const checkData = ({ page, total_results, results }) => {
-      console.log(total_results);
       const PER_PAGE = 20;
       if (page === 1 && total_results > PER_PAGE) {
         setIsLoadMore(true);
-        console.log(page, isLoadMore);
       }
       if (total_results === 0) {
         setIsLoadMore(false);
@@ -43,7 +41,6 @@ const MovieSearch = () => {
         try {
           setLoading(true);
           const data = await searchMoviesByTitle(search, page);
-          //console.log(data);
           setMovies(prevMovies => [...prevMovies, ...data.results]);
           checkData(data);
         } catch (error) {
@@ -55,7 +52,7 @@ const MovieSearch = () => {
 
       fetchMovies();
     }
-  }, [search, page, setIsLoadMore, isLoadMore]);
+  }, [search, page]);
 
   const loadMore = useCallback(() => {
     setSearchParams({ search, page: Number(page) + 1 });

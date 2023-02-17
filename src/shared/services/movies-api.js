@@ -12,8 +12,8 @@ export const getTrendingMovies = async () => {
   return data;
 };
 
-export const getMovieDetails = async movie_id => {
-  const { data } = await instance.get(`/movie/${movie_id}`);
+export const getMovieDetails = async movieId => {
+  const { data } = await instance.get(`/movie/${movieId}`);
   return data;
 };
 
@@ -29,6 +29,7 @@ export const searchMoviesByTitle = async (query, page = 1) => {
 
 export const searchCastByMovieId = async movie_id => {
   const { data } = await instance.get(`/movie/${movie_id}/credits`);
+  console.log(data);
   return data;
 };
 
