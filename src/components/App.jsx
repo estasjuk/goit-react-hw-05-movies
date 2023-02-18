@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Loader from 'shared/components/Loader/Loader';
 
 const Navbar = lazy(() => import('./Navbar/Navbar'));
@@ -15,7 +15,7 @@ const MoviesSearchPage = lazy(() =>
 
 export const App = () => {
   return (
-    <BrowserRouter basename="/goit-react-hw-05-movies">
+    <>
       <Navbar />
       <Suspense fallback={<Loader />}>
         <Routes>
@@ -28,6 +28,6 @@ export const App = () => {
           <Route path="*" element={<HomePage />} />
         </Routes>
       </Suspense>
-    </BrowserRouter>
+    </>
   );
 };
