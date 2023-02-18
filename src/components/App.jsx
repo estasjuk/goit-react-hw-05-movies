@@ -19,7 +19,7 @@ export const App = () => {
       <Navbar />
       <Suspense fallback={<Loader />}>
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/goit-react-hw-05-movies" element={<HomePage />} />
           <Route path="/movies/:movieId" element={<SingleMoviePage />}>
             <Route path="cast" element={<CastPage />} />
             <Route path="reviews" element={<ReviewsPage />} />
