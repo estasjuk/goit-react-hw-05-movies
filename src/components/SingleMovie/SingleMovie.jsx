@@ -29,8 +29,7 @@ const SingleMovie = () => {
     const fetchMovieDetails = async () => {
       try {
         const data = await getMovieDetails(movieId);
-        //console.log(data);
-        setMovie({ ...data });
+        setMovie(data);
       } catch ({ response }) {
         setError(response.data.message);
         alert(response.data.message);
@@ -39,11 +38,7 @@ const SingleMovie = () => {
       }
     };
     fetchMovieDetails();
-    //console.log(fetchMovieDetails());
-    //console.log(getMovieDetails(movieId));
   }, [movieId]);
-
-  const { poster_path, genres, title, release_date, overview } = movie;
 
   return (
     <div className={css.Wrapper}>
@@ -54,8 +49,8 @@ const SingleMovie = () => {
       <div className={css.MovieCard}>
         <img
           src={
-            poster_path
-              ? `https://image.tmdb.org/t/p/w500${poster_path}`
+            movie?.poster_path
+              ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
               : 'https://ik.imagekit.io/tc8jxffbcvf/default-movie-portrait_EmJUj9Tda5wa.jpg?tr=fo-auto,di-'
           }
           alt={movie.title}
@@ -64,12 +59,12 @@ const SingleMovie = () => {
         />
         <div>
           <h1 className={css.title}>
-            {title} ({release_date})
+            {movie?.title} ({movie?.release_date})
           </h1>
           <h3 className={css.title}>Overview:</h3>
-          <p>{overview}</p>
+          <p>{movie?.overview}</p>
           <h3 className={css.title}>Genres:</h3>
-          {genres.length !== 0 && <p>{getGenresList(genres)}</p>}
+          {movie?.genres && <p>{getGenresList(movie?.genres)}</p>}
         </div>
       </div>
       <h3 className={css.title}>Additional information:</h3>
